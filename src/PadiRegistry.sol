@@ -20,6 +20,7 @@ contract PassportRegistry is Ownable {
         address userAddress;
     }
 
+
     // Mapping from unique ID to user data
     mapping(bytes32 => UserData) public userData;
 
@@ -32,6 +33,14 @@ contract PassportRegistry is Ownable {
     // Mapping from address to tag (0 for user, 1 for padi, 2 for verifier)
     mapping(address => UserTag) public addressTags;
 
+
     // IPFS contract address
     address public ipfsContractAddress;
+    
+
+    // Event emitted when a user adds a verifier
+    event VerifierAdded(address indexed user, address indexed verifier);
+
+    // Event emitted when a verifier charges are updated
+    event VerificationChargesUpdated(address indexed verifier, uint256 charges);
 }
