@@ -36,11 +36,24 @@ contract PassportRegistry is Ownable {
 
     // IPFS contract address
     address public ipfsContractAddress;
-    
+
 
     // Event emitted when a user adds a verifier
     event VerifierAdded(address indexed user, address indexed verifier);
 
     // Event emitted when a verifier charges are updated
     event VerificationChargesUpdated(address indexed verifier, uint256 charges);
+
+
+    // Modifier to check if the sender has the verifier tag
+    modifier onlyVerifier() {
+        require(addressTags[msg.sender] == UserTag.VERIFIER, "Sender is not a verifier");
+        _;
+    }
+
+    // Modifier to check if the sender has the padi tag
+    modifier onlyPadi() {
+        require(addressTags[msg.sender] == UserTag.PADI, "Sender is not a padi");
+        _;
+    }
 }
