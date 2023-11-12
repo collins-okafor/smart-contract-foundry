@@ -11,6 +11,9 @@ interface IPFS {
 contract PassportRegistry is Ownable {
     using ECDSA for bytes32;
 
+    // Enum to represent user tags
+    enum UserTag { USER, PADI, VERIFIER }
+
     // Structure to represent user data
     struct UserData {
         string passportNumber;
@@ -27,7 +30,7 @@ contract PassportRegistry is Ownable {
     mapping(address => uint256) public verificationCharges;
 
     // Mapping from address to tag (0 for user, 1 for padi, 2 for verifier)
-    mapping(address => uint8) public addressTags;
+    mapping(address => UserTag) public addressTags;
 
     // IPFS contract address
     address public ipfsContractAddress;
