@@ -56,4 +56,9 @@ contract PassportRegistry is Ownable {
         require(addressTags[msg.sender] == UserTag.PADI, "Sender is not a padi");
         _;
     }
+
+    // Constructor to set the IPFS contract address
+    constructor(address _ipfsContractAddress) {
+        ipfsContractAddress = _ipfsContractAddress;
+    }
 }
